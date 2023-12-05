@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{marques.nom}}</h1>
+            <p>{{marques.date|date('Y-m-d H:i:s')}}</p>
+            <p>
+                {% if marques.logo is not null %}
+                    <img src="{{ asset('/uploads/'~marques.logo) }}" alt="logo" style="width:100px;">
+                {% endif %}
+            </p>
+        {{form(edit)}}
+    </div>
+{% endblock %}

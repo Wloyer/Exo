@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ModeleController!{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>Liste des modeles</h1>
+{% if modeles is not empty %}
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Nom </td>
+                <td>Prix</td>
+                <td>Marques</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mod in modeles %}
+            <tr>
+                <td>{{mod.nom}}</td>
+                <td>{{mod.prix}} </td>
+                <td>{{ mod.marques ? mod.marques.nom : 'Marque non disponible' }}</td>
+                <td>
+                <a href="{{path('modeles', {"id": mod.id})}}">Afficher
+                </a>
+                <a href="{{path('delete_modeles', {'id' :mod.id})}}">
+                Supprimer
+                </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+
+{% else %}
+    <p>Il n'y a aucun modéle</p>
+{% endif %}
+
+{{ form(ajout)}}
+</div>
+{% endblock %}
